@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include "array.h"
-#include "../LibraryCPPClass/array.h"
 
 void writer(const Array *arr);
 void writer(long value);
