@@ -13,3 +13,19 @@ Release/*
 .vs/*
 build/*
 .vscode/*
+**/CMakeCache.txt
+**/CMakeFiles/
+**/CMakeScripts/
+**/cmake_install.cmake
+**/Makefile
+
+# Local IDE settings and generated build output
+.idea/
+cmake-build-*/
+**/CTestTestfile.cmake
+**/Testing/
+*.o
+*.a
+/delete_cache.cmake
+/Lab1CPP/Lab1CPP
+/Lab1CPP/output.txt

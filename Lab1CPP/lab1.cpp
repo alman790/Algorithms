@@ -19,7 +19,6 @@ void task1(Array *arr) {
     for (size_t i = 0; i < array_size(arr); i++) {
         if (i % 2 == 0) accumulator += static_cast<long>(array_get(arr, i));
         else accumulator -= static_cast<long>(array_get(arr, i));
-        std::cout << accumulator << std::endl;
     }
 
     writer(accumulator);
