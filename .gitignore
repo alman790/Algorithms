@@ -18,8 +18,6 @@ build/*
 **/CMakeScripts/
 **/cmake_install.cmake
 **/Makefile
-
-# Local IDE settings and generated build output
 .idea/
 cmake-build-*/
 **/CTestTestfile.cmake
