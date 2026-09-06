@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <climits>
 #include "array.h"
 
 void writer(const Array *arr);
