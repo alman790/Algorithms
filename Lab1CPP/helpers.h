@@ -8,7 +8,7 @@
 #include <climits>
 
 void writer(const Array *arr);
-void writer(long value);
+void writer(long long value);
 void reader(int choice);
 void quicksort(Array *arr, size_t left, size_t right);
 

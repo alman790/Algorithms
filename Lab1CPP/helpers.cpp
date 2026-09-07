@@ -31,7 +31,7 @@ void reader(int choice) {
                 break;
             default:
                 array_delete(arr);
-                break;
+                return;;
         }
     }
     input.close();
@@ -49,7 +49,7 @@ void writer(const Array *arr) {
     output.close();
 }
 
-void writer(long value) {
+void writer(long long value) {
     std::ofstream output("output.txt", std::ios::app);
 
     if (!output.is_open()) return;
