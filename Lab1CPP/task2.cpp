@@ -2,7 +2,9 @@
 
 void task2(Array *arr) {
     Array *res = array_create(2);
-    int count_even = 0, min = INT_MAX;
+    int count_even = 0;
+
+    long long min = LLONG_MAX;
 
     for (size_t i = 0; i < array_size(arr); i++) {
         if (array_get(arr, i) % 2 == 0) count_even++;
@@ -39,7 +41,8 @@ void task2(Array *arr) {
         }
 
         for (size_t i = 0; i < array_size(even) - 1; i++) {
-            int diff = array_get(even, i + 1) - array_get(even, i);
+            long long diff = static_cast<long long>(array_get(even, i + 1))
+                            - static_cast<long long>(array_get(even, i));
             if (diff < min) {
                 min = diff;
                 array_set(res, 0, array_get(even, i));

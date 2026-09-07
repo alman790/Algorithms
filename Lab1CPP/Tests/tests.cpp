@@ -189,6 +189,37 @@ void test_task1(std::string &program) {
             check(name, actual, exp);
         }
     }
+
+    {
+        clear_out();
+        std::string test = "";
+        write_inp(test);
+        if (!run_program(program, 1)) {
+            std::cout <<  "[FAILED] task1: programm error " << "\n";
+            FAILED_TESTS++;
+        } else {
+            std::string exp = "";
+            std::string actual = read_out();
+            std::string name = "task1: white label";
+            check(name, actual, exp);
+        }
+    }
+
+    {
+        clear_out();
+        std::string test = "2\n"
+                           "1 2 3";
+        write_inp(test);
+        if (!run_program(program, 1)) {
+            std::cout <<  "[FAILED] task1: programm error " << "\n";
+            FAILED_TESTS++;
+        } else {
+            std::string exp = "-1\n";
+            std::string actual = read_out();
+            std::string name = "task1: read only for size";
+            check(name, actual, exp);
+        }
+    }
 }
 
 void test_task2(std::string &program) {
@@ -315,6 +346,58 @@ void test_task2(std::string &program) {
             std::string exp = "0 0\n";
             std::string actual = read_out();
             std::string name = "task2: zero els";
+            check(name, actual, exp);
+        }
+    }
+
+    {
+        clear_out();
+
+        std::string test =
+            "2\n"
+            "-2147483648 2147483646";
+
+        write_inp(test);
+
+        if (!run_program(program, 2)) {
+            std::cout << "[FAILED] task2: program error\n";
+            FAILED_TESTS++;
+        } else {
+            std::string exp = "-2147483648 2147483646\n";
+            std::string actual = read_out();
+            std::string name = "task2: extreme";
+
+            check(name, actual, exp);
+        }
+    }
+
+    {
+        clear_out();
+        std::string test = "";
+        write_inp(test);
+        if (!run_program(program, 2)) {
+            std::cout <<  "[FAILED] task2: programm error\n";
+            FAILED_TESTS++;
+        } else {
+            std::string exp = "";
+            std::string actual = read_out();
+            std::string name = "task2: white label";
+            check(name, actual, exp);
+        }
+    }
+
+    {
+        clear_out();
+        std::string test = "2\n"
+                           "1 2 3";
+        write_inp(test);
+        if (!run_program(program, 2)) {
+            std::cout <<  "[FAILED] task1: programm error " << "\n";
+            FAILED_TESTS++;
+        } else {
+            std::string exp = "2 0\n";
+            std::string actual = read_out();
+            std::string name = "task1: read only for size";
             check(name, actual, exp);
         }
     }

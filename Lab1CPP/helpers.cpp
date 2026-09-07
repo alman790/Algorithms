@@ -7,11 +7,18 @@ void reader(int choice) {
     if (!input.is_open()) return;
 
     while (input >> size) {
+        if (size < 0) return;
+
         Array *arr = array_create(size);
 
         for (int i = 0; i < size; i++) {
             Data val;
-            input >> val;
+
+            if (!(input >> val)) {
+                array_delete(arr);
+                return;
+            }
+
             array_set(arr, i, val);
         }
 
@@ -23,6 +30,7 @@ void reader(int choice) {
                 task2(arr);
                 break;
             default:
+                array_delete(arr);
                 break;
         }
     }
