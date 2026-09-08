@@ -14,5 +14,6 @@ int main() {
         task2(arr);
     }
 
+    input.close();
     return 0;
 }
