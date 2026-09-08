@@ -36,9 +36,7 @@ void task2(Array *arr) {
             }
         }
 
-        if (count_even > 0) {
-            quicksort(even, 0, array_size(even) - 1);
-        }
+        quicksort(even, 0, array_size(even) - 1);
 
         for (size_t i = 0; i < array_size(even) - 1; i++) {
             long long diff = static_cast<long long>(array_get(even, i + 1))

@@ -1,40 +1,30 @@
 #include "helpers.h"
 
-void reader(int choice) {
+bool reader(std::ifstream &inp, Array *&arr) {
     int size;
-    std::ifstream input("input.txt");
 
-    if (!input.is_open()) return;
+    if (!inp.is_open()) return false;
 
-    while (input >> size) {
-        if (size < 0) return;
+    if (!(inp >> size)) return false;
 
-        Array *arr = array_create(size);
+    if (size < 0) return false;
 
-        for (int i = 0; i < size; i++) {
-            Data val;
+    arr = array_create(size);
 
-            if (!(input >> val)) {
-                array_delete(arr);
-                return;
-            }
+    for (int i = 0; i < size; i++) {
+        Data val;
 
-            array_set(arr, i, val);
+        if (!(inp >> val)) {
+            array_delete(arr);
+            arr = nullptr;
+            return false;
         }
 
-        switch (choice) {
-            case 1:
-                task1(arr);
-                break;
-            case 2:
-                task2(arr);
-                break;
-            default:
-                array_delete(arr);
-                return;;
-        }
+        array_set(arr, i, val);
     }
-    input.close();
+
+    inp.close();
+    return true;
 }
 
 void writer(const Array *arr) {

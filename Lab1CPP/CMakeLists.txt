@@ -1,14 +1,19 @@
-add_executable(Lab1CPP
-        main.cpp
-        helpers.h
-        helpers.cpp
-        task1.h
+add_executable(Task1
+        task1_main.cpp
         task1.cpp
-        task2.cpp
-        task2.h
+        helpers.cpp
 )
-target_include_directories(Lab1CPP PUBLIC ../LibraryCPP)
-target_link_libraries(Lab1CPP LibraryCPP)
 
-add_test(NAME TestLab1CPP COMMAND Lab1CPP)
+target_include_directories(Task1 PUBLIC ../LibraryCPP)
+target_link_libraries(Task1 LibraryCPP)
+
+add_executable(Task2
+        task2_main.cpp
+        task2.cpp
+        helpers.cpp
+)
+
+target_include_directories(Task2 PUBLIC ../LibraryCPP)
+target_link_libraries(Task2 LibraryCPP)
+
 add_subdirectory(Tests)

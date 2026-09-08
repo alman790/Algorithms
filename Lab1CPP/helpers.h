@@ -9,7 +9,7 @@
 
 void writer(const Array *arr);
 void writer(long long value);
-void reader(int choice);
+bool reader(std::ifstream &inp, Array *&arr);
 void quicksort(Array *arr, size_t left, size_t right);
 
 #endif //ALGORITHMS_HELPERS_H

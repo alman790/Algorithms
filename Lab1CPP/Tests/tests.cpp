@@ -28,8 +28,8 @@ void clear_out() {
     std::ofstream output("output.txt", std::ios::trunc);
 }
 
-bool run_program(std::string &program, int task) {
-    std::string command = "\"" + program + "\" " + std::to_string(task);
+bool run_program(std::string &program) {
+    std::string command = "\"" + program + "\" ";
     return std::system(command.c_str()) == 0;
 }
 
@@ -50,7 +50,7 @@ void test_task1(std::string &program) {
         std::string test = "4\n"
                   "1 4 3 2";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -68,7 +68,7 @@ void test_task1(std::string &program) {
                            "1";
         write_inp(test);
 
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -84,7 +84,7 @@ void test_task1(std::string &program) {
         std::string test = "1\n"
                            "-1\n";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -100,7 +100,7 @@ void test_task1(std::string &program) {
         std::string test = "2\n"
                            "21 5";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -116,7 +116,7 @@ void test_task1(std::string &program) {
         std::string test = "4\n"
                            "4 -1 3 -3";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -132,7 +132,7 @@ void test_task1(std::string &program) {
         std::string test = "6\n"
                            "-1 -2 -3 -4 -6 -5";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -148,7 +148,7 @@ void test_task1(std::string &program) {
         std::string test = "7\n"
                            "-1 1 -2 2 -3 3 -5";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -164,7 +164,7 @@ void test_task1(std::string &program) {
         std::string test = "10\n"
                            "10 10 10 10 10 10 10 10 10 10";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -179,7 +179,7 @@ void test_task1(std::string &program) {
         clear_out();
         std::string test = "0\n";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -194,7 +194,7 @@ void test_task1(std::string &program) {
         clear_out();
         std::string test = "";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -210,7 +210,7 @@ void test_task1(std::string &program) {
         std::string test = "2\n"
                            "1 2 3";
         write_inp(test);
-        if (!run_program(program, 1)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -228,7 +228,7 @@ void test_task2(std::string &program) {
         std::string test = "8\n"
                            "100 7 42 10 11 40 2 70";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -244,7 +244,7 @@ void test_task2(std::string &program) {
         std::string test = "7\n"
                            "18 5 100 18 3 40 2";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -260,7 +260,7 @@ void test_task2(std::string &program) {
         std::string test = "8\n"
                            "-101 -100 -3 8 -6 15 -8 50";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -276,7 +276,7 @@ void test_task2(std::string &program) {
         std::string test = "8\n"
                            "20 101 102 103 7 40 70 200";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -292,7 +292,7 @@ void test_task2(std::string &program) {
         std::string test = "8\n"
                            "-200 150 -2 99 80 2 -50 300";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -308,7 +308,7 @@ void test_task2(std::string &program) {
         std::string test = "1\n"
                            "1";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -324,7 +324,7 @@ void test_task2(std::string &program) {
         std::string test = "1\n"
                            "2";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -339,7 +339,7 @@ void test_task2(std::string &program) {
         clear_out();
         std::string test = "0\n";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -359,7 +359,7 @@ void test_task2(std::string &program) {
 
         write_inp(test);
 
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout << "[FAILED] task2: program error\n";
             FAILED_TESTS++;
         } else {
@@ -375,7 +375,7 @@ void test_task2(std::string &program) {
         clear_out();
         std::string test = "";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task2: programm error\n";
             FAILED_TESTS++;
         } else {
@@ -391,7 +391,7 @@ void test_task2(std::string &program) {
         std::string test = "2\n"
                            "1 2 3";
         write_inp(test);
-        if (!run_program(program, 2)) {
+        if (!run_program(program)) {
             std::cout <<  "[FAILED] task1: programm error " << "\n";
             FAILED_TESTS++;
         } else {
@@ -404,15 +404,16 @@ void test_task2(std::string &program) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
+    if (argc < 3) {
         std::cout << "Lab1CPP executable not specified\n";
         return 1;
     }
 
-    std::string program = argv[1];
+    std::string program1 = argv[1];
+    std::string program2 = argv[2];
 
-    test_task1(program);
-    test_task2(program);
+    test_task1(program1);
+    test_task2(program2);
 
     std::cout << '\n';
 
