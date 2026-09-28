@@ -28,7 +28,6 @@ struct List
         }
         head = nullptr;
         tail = nullptr;
-        delete curr;
     };
 };
 
@@ -94,11 +93,18 @@ ListItem *list_insert_after(List *list, ListItem *item, Data data)
     }
 
     if (!flaged) {
-        new_item->next = list_item_next(item);
-        new_item->prev = item;
-        item->next = new_item;
-        ListItem *temp = list_item_next(new_item);
-        temp->prev = new_item;
+        if (item == list->tail) {
+            ListItem *temp = list->tail;
+            list->tail = new_item;
+            new_item->prev = temp;
+            temp->next = new_item;
+        } else {
+            new_item->next = list_item_next(item);
+            new_item->prev = item;
+            item->next = new_item;
+            ListItem *temp = list_item_next(new_item);
+            temp->prev = new_item;
+        }
     }
 
     list->size++;
@@ -115,33 +121,35 @@ ListItem *list_erase_first(List *list)
         list->head = nullptr;
         list->tail = nullptr;
         delete item;
+        list->size--;
     } else {
         ListItem *item = list->head;
         list->head = list->head->next;
         list->head->prev = nullptr;
         delete item;
+        list->size--;
     }
-    list->size--;
     return nullptr;
 }
 
 ListItem *list_erase_next(List *list, ListItem *item)
 {
-    if (list->size == 0) {
-        list->head = nullptr;
-        list->tail = nullptr;
-    } else if (list->size == 1) {
-        ListItem *temp = list->head;
-        list->head = nullptr;
-        list->tail = nullptr;
-        delete temp;
+    if (list->size == 0 || item->next == nullptr || item == nullptr) {
+        return nullptr;
     } else {
-        ListItem* next = list_item_next(item);
-        ListItem* temp = next;
+        ListItem *next = list_item_next(item);
+        ListItem *temp = next;
         next = list_item_next(next);
         item->next = next;
+
+        if (next != nullptr) {
+            next->prev = item;
+        } else {
+            list->tail = item;
+        }
+
         delete temp;
+        list->size--;
     }
-    list->size--;
     return nullptr;
 }
