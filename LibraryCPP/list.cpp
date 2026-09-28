@@ -134,7 +134,7 @@ ListItem *list_erase_first(List *list)
 
 ListItem *list_erase_next(List *list, ListItem *item)
 {
-    if (list->size == 0 || item->next == nullptr || item == nullptr) {
+    if (list->size == 0 || item == nullptr || item->next == nullptr ) {
         return nullptr;
     } else {
         ListItem *next = list_item_next(item);
