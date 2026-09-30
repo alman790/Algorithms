@@ -19,9 +19,9 @@
     <generated>
       <config projectName="Algorithms" targetName="LibraryCPP" />
       <config projectName="Algorithms" targetName="Lab1C" />
-      <config projectName="Algorithms" targetName="TestArrayC" />
-      <config projectName="Algorithms" targetName="LibraryC" />
-      <config projectName="Algorithms" targetName="LibraryCPPClass" />
+      <config projectName="Algorithms" targetName="TestStackCPP" />
+      <config projectName="Algorithms" targetName="JollyScript" />
+      <config projectName="Algorithms" targetName="TestListCPP" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -31,8 +31,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98007377-bbf3-41ed-84b5-f65b314ae810" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Lab2CPP/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab2CPP/helpers.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab2CPP/helpers.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab2CPP/interpreter.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab2CPP/interpreter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryCPP/Tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryCPP/Tests/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1C/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1C/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -60,6 +73,9 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="3JQCUSkPbyzfcjesOl0aHLsgYQ4" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -80,17 +96,28 @@
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;ctest.advertisement.all.test.configuration.is.created&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;lab-2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vladislavlevin/Desktop/Algorithms/Lab2CPP&quot;,
     &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Lab2CPP" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.Lab1C">
-    <configuration name="Lab1C" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="Lab1C" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Algorithms" RUN_TARGET_NAME="Lab1C">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JollyScript" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="JollyScript" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Algorithms" RUN_TARGET_NAME="JollyScript">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryC" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="LibraryC" CONFIG_NAME="Debug">
+    <configuration name="Lab1C" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="Lab1C" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Algorithms" RUN_TARGET_NAME="Lab1C">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -100,17 +127,17 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryCPPClass" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="LibraryCPPClass" CONFIG_NAME="Debug">
+    <configuration name="TestListCPP" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="TestListCPP" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Algorithms" RUN_TARGET_NAME="TestListCPP">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestArrayC" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="TestArrayC" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Algorithms" RUN_TARGET_NAME="TestArrayC">
+    <configuration name="TestStackCPP" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Algorithms" TARGET_NAME="TestStackCPP" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Algorithms" RUN_TARGET_NAME="TestStackCPP">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All CTest" type="CTestRunConfiguration" factoryName="CTestRun" PROGRAM_PARAMS="--extra-verbose" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$CMakeCurrentLocalGenerationDir$" PASS_PARENT_ENVS_2="true" RUN_PATH="$CTestCurrentExecutableName$" EXPLICIT_BUILD_TARGET_NAME="all" TEST_MODE="SUITE_TEST">
+    <configuration name="All CTest" type="CTestRunConfiguration" factoryName="CTestRun" PROGRAM_PARAMS="--extra-verbose" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$CMakeCurrentLocalGenerationDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$CTestCurrentExecutableName$" EXPLICIT_BUILD_TARGET_NAME="all" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -118,10 +145,10 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.Lab1C" />
-      <item itemvalue="CMake Application.LibraryC" />
-      <item itemvalue="CMake Application.TestArrayC" />
+      <item itemvalue="CMake Application.JollyScript" />
       <item itemvalue="CMake Application.LibraryCPP" />
-      <item itemvalue="CMake Application.LibraryCPPClass" />
+      <item itemvalue="CMake Application.TestListCPP" />
+      <item itemvalue="CMake Application.TestStackCPP" />
       <item itemvalue="CTest Application.All CTest" />
     </list>
   </component>
@@ -136,11 +163,17 @@
       <option name="presentableId" value="Default" />
       <updated>1789583921779</updated>
       <workItem from="1789583923775" duration="7965000" />
-      <workItem from="1790614625215" duration="6306000" />
+      <workItem from="1790614625215" duration="14040000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+    <isAutomaticBootstrapAfterUpdate value="false" />
   </component>
 </project>
