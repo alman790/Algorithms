@@ -54,6 +54,20 @@ Data get_script_symb(Interpreter *interpreter, Data position) {
     return list_item_data(current);
 }
 
+Data get_script_symb_xy(Interpreter *interpreter, Data x, Data y) {
+    if (x < 0 || x >= interpreter->width || y < 0 || y >= interpreter->height) {
+        return -1;
+    }
+
+    Data position = y * interpreter->width + x;
+
+    if (position < 0 || position >= list_size(interpreter->script)) {
+        return  -1;
+    }
+
+    return get_script_symb(interpreter, position);
+}
+
 void set_sript_width(Interpreter *interpreter, Data width) {
     interpreter->width = width;
 }

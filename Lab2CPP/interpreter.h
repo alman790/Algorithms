@@ -6,6 +6,8 @@
 struct Interpreter;
 
 void set_script_symb(Interpreter *interpreter, char symb);
+Data get_script_symb(Interpreter *interpreter, Data position);
+Data get_script_symb_xy(Interpreter *interpreter, Data x, Data y);
 void set_sript_width(Interpreter *interpreter, Data width);
 Data get_script_width(Interpreter *interpreter);
 void set_sript_height(Interpreter *interpreter, Data height);
