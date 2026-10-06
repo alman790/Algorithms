@@ -25,4 +25,3 @@ bool execute_current(Interpreter *interpreter, std::ifstream &inp);
 bool loop(Interpreter *interpreter, std::ifstream &inp);
 
 #endif //ALGORITHMS_INTERPRETER_H
-//TODO: make sure that the current design possible to do that
