@@ -107,6 +107,19 @@ bool find_start(Interpreter *interpreter) {
     return result;
 }
 
-bool step(Interpreter *interpreter);
+bool step(Interpreter *interpreter) {
+    bool result = true;
+
+    if (interpreter->x + interpreter->direction >= 0 && interpreter->x + interpreter->direction < interpreter->width) interpreter->x = interpreter->x + interpreter->direction;
+    else return false;
+
+    if (interpreter->y + 1 >= 0 && interpreter->y + 1 < interpreter->height) interpreter->y = interpreter->y + 1;
+    else {
+        interpreter->x = interpreter->x - interpreter->direction;
+        return false;
+    }
+
+    return true;
+}
 
 //TODO:: make more interfaces and first worker with tree. For now I think it must be like DFS or something like this
