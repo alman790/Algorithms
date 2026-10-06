@@ -41,7 +41,7 @@ void interpreter_delete(Interpreter *interpreter) {
 }
 
 void set_script_symb(Interpreter *interpreter, char symb) {
-    list_insert(interpreter->script, symb);
+    list_insert_after(interpreter->script, list_last(interpreter->script), symb);
 }
 
 Data get_script_symb(Interpreter *interpreter, Data position) {

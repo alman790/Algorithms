@@ -73,9 +73,11 @@ ListItem *list_insert(List *list, Data data)
         list->head = item;
         list->tail = item;
     } else {
-        item->prev = list->tail;
-        list->tail->next = item;
-        list->tail = item;
+        ListItem *temp = list->head;
+
+        list->head = item;
+        item->next = temp;
+        temp->prev = item;
     }
     list->size++;
     return item;

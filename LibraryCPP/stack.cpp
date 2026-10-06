@@ -31,14 +31,13 @@ void stack_push(Stack *stack, Data data)
 Data stack_get(const Stack *stack)
 {
     if (stack->size == 0) return (Data) 0;
-    return list_item_data(list_last(stack->elements));
+    return list_item_data(list_first(stack->elements));
 }
 
 void stack_pop(Stack *stack)
 {
     if (stack->size > 0) {
-        if (stack->size > 1) list_erase_next(stack->elements,list_item_prev(list_last(stack->elements)));
-        else list_erase_first(stack->elements);
+        list_erase_first(stack->elements);
         stack->size--;
     }
 }
