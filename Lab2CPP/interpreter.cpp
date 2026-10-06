@@ -283,10 +283,11 @@ bool execute_current(Interpreter *interpreter, std::ifstream &inp) {
         case '#': {
             char a;
             if (inp.get(a)) {
-                if (a >= '0' && a <= '9') {
-                    stack_push(interpreter->data, a - '0');
-                } else if (a >= 'A' && a <= 'F') {
-                    stack_push(interpreter->data, a - 'A' + 10);
+                unsigned char ua = static_cast<unsigned char>(a);
+                if (ua >= '0' && ua <= '9') {
+                    stack_push(interpreter->data, ua - '0');
+                } else if (ua >= 'A' && ua <= 'F') {
+                    stack_push(interpreter->data, ua - 'A' + 10);
                 }
             } else {
                 stack_push(interpreter->data, 0);
@@ -306,4 +307,24 @@ bool execute_current(Interpreter *interpreter, std::ifstream &inp) {
     return true;
 }
 
-//TODO:: make more interfaces and first worker with tree. For now I think it must be like DFS or something like this
+bool loop(Interpreter *interpreter, std::ifstream &inp) {
+    if (!find_start(interpreter)) {
+        return false;
+    }
+
+    interpreter->direction = -1;
+
+    while (true) {
+
+        bool branch_end = get_current_symb(interpreter) == '~' && !interpreter->print_mode;
+
+        if (!execute_current(interpreter, inp)) {
+            return true;
+        }
+
+        if (branch_end) continue;
+
+        if (!step(interpreter)) return false;
+    }
+
+}
