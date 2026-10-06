@@ -1,4 +1,4 @@
-#include "Interpreter.h"
+#include "interpreter.h"
 #include "helpers.h"
 
 int main() {

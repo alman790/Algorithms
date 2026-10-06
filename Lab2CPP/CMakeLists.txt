@@ -1,7 +1,9 @@
 add_executable(JollyScript
         interpreter.cpp
+        interpreter.h
         helpers.h
         helpers.cpp
+        main.cpp
 )
 
 target_include_directories(JollyScript PUBLIC ../LibraryCPP)
