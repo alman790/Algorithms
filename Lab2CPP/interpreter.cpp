@@ -1,8 +1,9 @@
 #include "interpreter.h"
 
+#include <iostream>
+
 #include "stack.h"
 #include "list.h"
-#include "helpers.h"
 
 struct Interpreter {
 
@@ -146,7 +147,10 @@ bool open_branch(Interpreter *interpreter) {
 
 bool execute_current(Interpreter *interpreter) {
     char symb = get_current_symb(interpreter);
-    switch (symb) {
+    if (interpreter->print_mode == true && symb != '\"') {
+        std::cout << symb;
+    } else {
+        switch (symb) {
         case '/':
             interpreter->direction = -1;
             break;
@@ -154,16 +158,106 @@ bool execute_current(Interpreter *interpreter) {
             interpreter->direction = 1;
             break;
         case '~':
-
+            if (!open_branch(interpreter)) {
+                return false;
+            }
             break;
         case '^':
             interpreter->direction = 1;
             save_branch(interpreter, interpreter->x + 1, interpreter->y + 1, interpreter->direction);
             interpreter->direction = -1;
             break;
-        default:
+        case '+' : {
+            Data a = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+            Data b = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+            stack_push(interpreter->data, (a + b) % 16);
             break;
+        }
+        case '-': {
+            Data a = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+            Data b = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+            Data result = (b - a) % 16;
+
+            if (result < 0) {
+                result += 16;
+            }
+
+            stack_push(interpreter->data, result);
+            break;
+        }
+        case ':': {
+            Data a = stack_get(interpreter->data);
+            stack_push(interpreter->data, a);
+            break;
+        }
+        case '$': {
+            stack_pop(interpreter->data);
+            break;
+        }
+        case '%': {
+            Data a = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+            Data b = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+            stack_push(interpreter->data,a);
+            stack_push(interpreter->data,b);
+            break;
+        }
+        case '?': {
+            Data a = stack_get(interpreter->data);
+
+            if (a == 0) {
+                interpreter->direction = -1;
+            } else {
+                Data top = a - 1;
+
+                stack_pop(interpreter->data);
+                stack_push(interpreter->data, top);
+
+                interpreter->direction = 1;
+            }
+
+            break;
+        }
+        case '.': {
+            Data a = stack_get(interpreter->data);
+            if (a >= 0 && a <= 9) {
+                std::cout << static_cast<char>(a + '0');
+            } else if (a >= 10 && a <= 15) {
+                std::cout << static_cast<char>(a + 'A' - 10);
+            }
+            break;
+        }
+        case 'n':
+            std::cout << '\n';
+            break;
+        case '\"':
+            interpreter->print_mode = interpreter->print_mode == false ? true : false;
+            break;
+        case '{': {
+            interpreter->ret_x = interpreter->x;
+            interpreter->ret_y = interpreter->y;
+            break;
+        }
+        case '}': {
+            interpreter->x = interpreter->ret_x;
+            interpreter->y = interpreter->ret_y;
+            break;
+        }
+        default:
+            if (symb >= '0' && symb <= '9') {
+                stack_push(interpreter->data, symb - '0');
+            } else if (symb >= 'A' && symb <= 'F') {
+                stack_push(interpreter->data, symb - 'A' + 10);
+            }
+            break;
+        }
     }
+
     return true;
 }
 
