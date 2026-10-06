@@ -16,8 +16,6 @@ bool reader(std::ifstream &inp, Interpreter *&interpreter) {
         } else current_w++;
     }
 
-    set_script_symb(interpreter, symb);
-
     if (current_w > 0) {
         if (current_w > width) width = current_w;
         height++;
@@ -39,6 +37,14 @@ bool reader(std::ifstream &inp, Interpreter *&interpreter) {
             current_w = 0;
         } else {
             set_script_symb(interpreter, symb);
+            current_w++;
+        }
+    }
+
+    if (current_w > 0) {
+        while (current_w < get_script_width(interpreter)) {
+            set_script_symb(interpreter, ' ');
+            current_w++;
         }
     }
 
