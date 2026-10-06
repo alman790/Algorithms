@@ -1,5 +1,6 @@
 #include "interpreter.h"
 
+#include <fstream>
 #include <iostream>
 
 #include "stack.h"
@@ -40,7 +41,7 @@ void set_script_symb(Interpreter *interpreter, char symb) {
 
 Data get_script_symb(Interpreter *interpreter, Data position) {
 
-    if (position < 0 || position >= list_size(interpreter->script)) {
+    if (position < 0 || position >= static_cast<Data>(list_size(interpreter->script))) {
         return  -1;
     }
 
@@ -62,7 +63,7 @@ Data get_script_symb_xy(Interpreter *interpreter, Data x, Data y) {
 
     Data position = y * interpreter->width + x;
 
-    if (position < 0 || position >= list_size(interpreter->script)) {
+    if (position < 0 || position >= static_cast<Data>(list_size(interpreter->script))) {
         return  -1;
     }
 
@@ -93,7 +94,7 @@ bool find_start(Interpreter *interpreter) {
     bool result = false;
     int size = 0;
 
-    while (!result && size < list_size(interpreter->script)) {
+    while (!result && size < static_cast<Data>(list_size(interpreter->script))) {
         if (get_script_symb_xy(interpreter, interpreter->x, interpreter->y) == '*') {
             result = true;
         } else {
@@ -145,7 +146,7 @@ bool open_branch(Interpreter *interpreter) {
     return false;
 }
 
-bool execute_current(Interpreter *interpreter) {
+bool execute_current(Interpreter *interpreter, std::ifstream &inp) {
     char symb = get_current_symb(interpreter);
     if (interpreter->print_mode == true && symb != '\"') {
         std::cout << symb;
@@ -246,6 +247,50 @@ bool execute_current(Interpreter *interpreter) {
         case '}': {
             interpreter->x = interpreter->ret_x;
             interpreter->y = interpreter->ret_y;
+            break;
+        }
+        case ',': {
+            Data a = stack_get(interpreter->data);
+            stack_pop(interpreter->data);
+
+            Data b = stack_get(interpreter->data);
+
+            stack_push(interpreter->data, a);
+
+            char asc2 = static_cast<char>(b * 16 + a);
+
+            std::cout << asc2;
+
+            break;
+        }
+        case '&': {
+
+            char a;
+
+            if (inp.get(a)) {
+                Data high = a / 16;
+                Data low = a % 16;
+
+                stack_push(interpreter->data, high);
+                stack_push(interpreter->data, low);
+            } else {
+                stack_push(interpreter->data, 0);
+                stack_push(interpreter->data, 0);
+            }
+
+            break;
+        }
+        case '#': {
+            char a;
+            if (inp.get(a)) {
+                if (a >= '0' && a <= '9') {
+                    stack_push(interpreter->data, a - '0');
+                } else if (a >= 'A' && a <= 'F') {
+                    stack_push(interpreter->data, a - 'A' + 10);
+                }
+            } else {
+                stack_push(interpreter->data, 0);
+            }
             break;
         }
         default:
