@@ -37,12 +37,37 @@ void set_script_symb(Interpreter *interpreter, char symb) {
     list_insert(interpreter->script, symb);
 }
 
+Data get_script_symb(Interpreter *interpreter, Data position) {
+
+    if (position < 0 || position >= list_size(interpreter->script)) {
+        return  -1;
+    }
+
+    int i = 0;
+    ListItem* current = list_first(interpreter->script);
+
+    while (i < position) {
+        current = list_item_next(current);
+        i++;
+    }
+
+    return list_item_data(current);
+}
+
 void set_sript_width(Interpreter *interpreter, Data width) {
     interpreter->width = width;
 }
 
+Data get_script_width(Interpreter *interpreter) {
+    return interpreter->width;
+}
+
 void set_sript_height(Interpreter *interpreter, Data height) {
     interpreter->height = height;
+}
+
+Data get_script_height(Interpreter *interpreter) {
+    return interpreter->height;
 }
 
 //TODO:: make more interfaces and first worker with tree. For now I think it must be like DFS or something like this

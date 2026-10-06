@@ -153,3 +153,7 @@ ListItem *list_erase_next(List *list, ListItem *item)
     }
     return nullptr;
 }
+
+size_t list_size(List *list) {
+    return list->size;
+}

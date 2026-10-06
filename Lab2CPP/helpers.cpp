@@ -26,7 +26,21 @@ bool reader(std::ifstream &inp, Interpreter *&interpreter) {
     set_sript_width(interpreter, width);
     set_sript_height(interpreter, height);
 
-    //TODO:: Make a writer loop
+    inp.clear();
+    inp.seekg(0);
+    current_w = 0;
+
+    while (inp.get(symb)) {
+        if (symb == '\n') {
+            while (current_w < get_script_width(interpreter)) {
+                set_script_symb(interpreter, ' ');
+                current_w++;
+            }
+            current_w = 0;
+        } else {
+            set_script_symb(interpreter, symb);
+        }
+    }
 
     return true;
 }

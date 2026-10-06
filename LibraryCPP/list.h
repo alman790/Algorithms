@@ -49,4 +49,6 @@ ListItem *list_erase_first(List *list);
 // Should be O(1)
 ListItem *list_erase_next(List *list, ListItem *item);
 
+size_t list_size(List *list);
+
 #endif
