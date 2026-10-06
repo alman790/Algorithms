@@ -6,9 +6,15 @@ int main() {
     std::ifstream script_file("script.txt");
     std::ifstream input_file("input.txt");
 
-    if (!script_file.is_open()) return 1;
+    if (!script_file.is_open()) {
+        interpreter_delete(interpreter);
+        return 1;
+    }
 
-    if (!input_file.is_open()) return 1;
+    if (!input_file.is_open()) {
+        interpreter_delete(interpreter);
+        return 1;
+    }
 
 
     if (!reader(script_file, interpreter)) {
