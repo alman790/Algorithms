@@ -33,6 +33,7 @@
     <list default="true" id="98007377-bbf3-41ed-84b5-f65b314ae810" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab2CPP/interpreter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Lab2CPP/interpreter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab2CPP/interpreter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Lab2CPP/interpreter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +159,7 @@
       <updated>1789583921779</updated>
       <workItem from="1789583923775" duration="7965000" />
       <workItem from="1790614625215" duration="15101000" />
-      <workItem from="1791292718235" duration="3204000" />
+      <workItem from="1791292718235" duration="5066000" />
     </task>
     <servers />
   </component>

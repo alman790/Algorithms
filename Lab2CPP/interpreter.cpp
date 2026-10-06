@@ -108,7 +108,6 @@ bool find_start(Interpreter *interpreter) {
 }
 
 bool step(Interpreter *interpreter) {
-    bool result = true;
 
     if (interpreter->x + interpreter->direction >= 0 && interpreter->x + interpreter->direction < interpreter->width) interpreter->x = interpreter->x + interpreter->direction;
     else return false;
@@ -119,6 +118,52 @@ bool step(Interpreter *interpreter) {
         return false;
     }
 
+    return true;
+}
+
+Data get_current_symb(Interpreter *interpreter) {
+    return get_script_symb_xy(interpreter, interpreter->x, interpreter->y);
+}
+
+void save_branch(Interpreter *interpreter, Data x, Data y, Data direction) {
+    stack_push(interpreter->branch,x);
+    stack_push(interpreter->branch,y);
+    stack_push(interpreter->branch,direction);
+}
+
+bool open_branch(Interpreter *interpreter) {
+    if (!stack_empty(interpreter->branch)) {
+        interpreter->direction = stack_get(interpreter->branch);
+        stack_pop(interpreter->branch);
+        interpreter->y = stack_get(interpreter->branch);
+        stack_pop(interpreter->branch);
+        interpreter->x = stack_get(interpreter->branch);
+        stack_pop(interpreter->branch);
+        return true;
+    }
+    return false;
+}
+
+bool execute_current(Interpreter *interpreter) {
+    char symb = get_current_symb(interpreter);
+    switch (symb) {
+        case '/':
+            interpreter->direction = -1;
+            break;
+        case '\\':
+            interpreter->direction = 1;
+            break;
+        case '~':
+
+            break;
+        case '^':
+            interpreter->direction = 1;
+            save_branch(interpreter, interpreter->x + 1, interpreter->y + 1, interpreter->direction);
+            interpreter->direction = -1;
+            break;
+        default:
+            break;
+    }
     return true;
 }
 

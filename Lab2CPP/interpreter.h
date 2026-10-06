@@ -13,6 +13,7 @@ Data get_script_width(Interpreter *interpreter);
 void set_sript_height(Interpreter *interpreter, Data height);
 Data get_script_height(Interpreter *interpreter);
 bool find_start(Interpreter *interpreter);
+bool step(Interpreter *interpreter);
 
 #endif //ALGORITHMS_INTERPRETER_H
 //TODO: make sure that the current design possible to do that
