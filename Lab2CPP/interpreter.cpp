@@ -1,8 +1,5 @@
 #include "interpreter.h"
 
-#include <fstream>
-#include <iostream>
-
 #include "stack.h"
 #include "list.h"
 
@@ -34,6 +31,14 @@ struct Interpreter {
         list_delete(script);
     }
 };
+
+Interpreter *interpreter_create() {
+    return new Interpreter;
+}
+
+void interpreter_delete(Interpreter *interpreter) {
+    delete interpreter;
+}
 
 void set_script_symb(Interpreter *interpreter, char symb) {
     list_insert(interpreter->script, symb);
