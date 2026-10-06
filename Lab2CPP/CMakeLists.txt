@@ -8,3 +8,5 @@ add_executable(JollyScript
 
 target_include_directories(JollyScript PUBLIC ../LibraryCPP)
 target_link_libraries(JollyScript LibraryCPP)
+
+add_subdirectory(Tests)
