@@ -84,4 +84,29 @@ Data get_script_height(Interpreter *interpreter) {
     return interpreter->height;
 }
 
+bool find_start(Interpreter *interpreter) {
+
+    interpreter->x = 0;
+    interpreter->y = 0;
+
+    bool result = false;
+    int size = 0;
+
+    while (!result && size < list_size(interpreter->script)) {
+        if (get_script_symb_xy(interpreter, interpreter->x, interpreter->y) == '*') {
+            result = true;
+        } else {
+            if (interpreter->x < interpreter->width - 1) interpreter->x++;
+            else {
+                interpreter->x = 0;
+                interpreter->y++;
+            }
+        }
+        size++;
+    }
+    return result;
+}
+
+bool step(Interpreter *interpreter);
+
 //TODO:: make more interfaces and first worker with tree. For now I think it must be like DFS or something like this
