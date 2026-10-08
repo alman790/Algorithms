@@ -1,17 +1,18 @@
 #include "interpreter.h"
 
 #include "stack.h"
-#include "list.h"
+#include "array.h"
 
 struct Interpreter {
 
-    List *script;
+    Array *script;
 
     Stack *data;
     Stack *branch;
 
     Data width;
     Data height;
+    Data script_position;
 
     Data x;
     Data y;
@@ -23,12 +24,12 @@ struct Interpreter {
 
     bool print_mode;
 
-    Interpreter() : script(list_create()), data(stack_create()), branch(stack_create()), width(0), height(0), x(0), y(0), direction(-1),ret_x(-1), ret_y(-1), print_mode(false) {}
+    Interpreter() : script(nullptr), data(stack_create()), branch(stack_create()), width(0), height(0), script_position(0),x(0), y(0), direction(-1),ret_x(-1), ret_y(-1), print_mode(false) {}
 
     ~Interpreter() {
         stack_delete(data);
         stack_delete(branch);
-        list_delete(script);
+        array_delete(script);
     }
 };
 
@@ -41,24 +42,21 @@ void interpreter_delete(Interpreter *interpreter) {
 }
 
 void set_script_symb(Interpreter *interpreter, char symb) {
-    list_insert_after(interpreter->script, list_last(interpreter->script), symb);
+    if (interpreter->script == nullptr) interpreter->script = array_create(interpreter->width * interpreter->height);
+
+    if (interpreter->script_position < static_cast<Data>(array_size(interpreter->script))) {
+        array_set(interpreter->script, interpreter->script_position, symb);
+        interpreter->script_position++;
+    }
 }
 
 Data get_script_symb(Interpreter *interpreter, Data position) {
 
-    if (position < 0 || position >= static_cast<Data>(list_size(interpreter->script))) {
+    if (position < 0 || position >= static_cast<Data>(array_size(interpreter->script))) {
         return  -1;
     }
 
-    int i = 0;
-    ListItem* current = list_first(interpreter->script);
-
-    while (i < position) {
-        current = list_item_next(current);
-        i++;
-    }
-
-    return list_item_data(current);
+    return array_get(interpreter->script, position);
 }
 
 Data get_script_symb_xy(Interpreter *interpreter, Data x, Data y) {
@@ -68,7 +66,7 @@ Data get_script_symb_xy(Interpreter *interpreter, Data x, Data y) {
 
     Data position = y * interpreter->width + x;
 
-    if (position < 0 || position >= static_cast<Data>(list_size(interpreter->script))) {
+    if (position < 0 || position >= static_cast<Data>(array_size(interpreter->script))) {
         return  -1;
     }
 
@@ -99,7 +97,7 @@ bool find_start(Interpreter *interpreter) {
     bool result = false;
     int size = 0;
 
-    while (!result && size < static_cast<Data>(list_size(interpreter->script))) {
+    while (!result && size < static_cast<Data>(array_size(interpreter->script))) {
         if (get_script_symb_xy(interpreter, interpreter->x, interpreter->y) == '*') {
             result = true;
         } else {

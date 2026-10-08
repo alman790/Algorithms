@@ -1,4 +1,3 @@
-#include <cstddef>
 #include "list.h"
 
 struct ListItem
@@ -15,9 +14,8 @@ struct List
 {
     ListItem *head = nullptr;
     ListItem *tail = nullptr;
-    size_t size = 0;
 
-    List() : head(nullptr), tail(nullptr), size(0) {}
+    List() : head(nullptr), tail(nullptr) {}
 
     ~List() {
         ListItem *curr = head;
@@ -69,7 +67,7 @@ ListItem *list_item_prev(ListItem *item)
 ListItem *list_insert(List *list, Data data)
 {
     ListItem *item = new ListItem(data);
-    if (list->size == 0) {
+    if (list->head == nullptr) {
         list->head = item;
         list->tail = item;
     } else {
@@ -79,7 +77,7 @@ ListItem *list_insert(List *list, Data data)
         item->next = temp;
         temp->prev = item;
     }
-    list->size++;
+
     return item;
 }
 
@@ -91,6 +89,16 @@ ListItem *list_insert_after(List *list, ListItem *item, Data data)
     if (list->head == list->tail && list->head == nullptr) {
         list->head = new_item;
         list->tail = new_item;
+        flaged = true;
+    }
+
+    if (!flaged && item == nullptr) {
+        ListItem *temp = list->head;
+
+        list->head = new_item;
+        new_item->next = temp;
+        temp->prev = new_item;
+
         flaged = true;
     }
 
@@ -109,53 +117,51 @@ ListItem *list_insert_after(List *list, ListItem *item, Data data)
         }
     }
 
-    list->size++;
     return new_item;
 }
 
 ListItem *list_erase_first(List *list)
 {
-    if (list->size == 0) {
+    if (list->head == nullptr) return nullptr;
+
+    if (list->head == list->tail) {
+        ListItem *temp = list->head;
+
         list->head = nullptr;
         list->tail = nullptr;
-    } else if (list->size == 1) {
-        ListItem *item = list->head;
-        list->head = nullptr;
-        list->tail = nullptr;
-        delete item;
-        list->size--;
-    } else {
-        ListItem *item = list->head;
-        list->head = list->head->next;
-        list->head->prev = nullptr;
-        delete item;
-        list->size--;
+
+        delete temp;
+        return nullptr;
     }
-    return nullptr;
+
+    ListItem *temp = list->head;
+    list->head = list->head->next;
+    list->head->prev = nullptr;
+    delete temp;
+
+    return list->head;
 }
 
 ListItem *list_erase_next(List *list, ListItem *item)
 {
-    if (list->size == 0 || item == nullptr || item->next == nullptr ) {
+    if (item == nullptr) return list_erase_first(list);
+
+    if (list->head == nullptr || item->next == nullptr ) {
         return nullptr;
-    } else {
-        ListItem *next = list_item_next(item);
-        ListItem *temp = next;
-        next = list_item_next(next);
-        item->next = next;
-
-        if (next != nullptr) {
-            next->prev = item;
-        } else {
-            list->tail = item;
-        }
-
-        delete temp;
-        list->size--;
     }
-    return nullptr;
-}
 
-size_t list_size(List *list) {
-    return list->size;
+    ListItem *next = list_item_next(item);
+    ListItem *temp = next;
+    next = list_item_next(next);
+    item->next = next;
+
+    if (next != nullptr) {
+        next->prev = item;
+    } else {
+        list->tail = item;
+    }
+
+    delete temp;
+
+    return next;
 }

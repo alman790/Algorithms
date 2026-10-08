@@ -62,6 +62,9 @@ int main() {
     {
         Interpreter* interpreter = interpreter_create();
 
+        set_sript_width(interpreter, 4);
+        set_sript_height(interpreter, 1);
+
         set_script_symb(interpreter, 'A');
         set_script_symb(interpreter, 'B');
         set_script_symb(interpreter, 'C');
@@ -80,6 +83,9 @@ int main() {
 
     {
         Interpreter* interpreter = interpreter_create();
+
+        set_sript_width(interpreter, 6);
+        set_sript_height(interpreter, 1);
 
         set_script_symb(interpreter, 'A');
         set_script_symb(interpreter, 'A');
@@ -137,6 +143,9 @@ int main() {
 
     {
         Interpreter* interpreter = interpreter_create();
+
+        set_sript_width(interpreter, 3);
+        set_sript_height(interpreter, 1);
 
         set_script_symb(interpreter, 'A');
         set_script_symb(interpreter, 'B');
