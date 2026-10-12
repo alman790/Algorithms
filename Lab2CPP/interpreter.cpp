@@ -240,7 +240,7 @@ bool execute_current(Interpreter *interpreter, std::ifstream &inp) {
             std::cout << '\n';
             break;
         case '\"':
-            interpreter->print_mode = interpreter->print_mode == false ? true : false;
+            interpreter->print_mode = !interpreter->print_mode;
             break;
         case '{': {
             interpreter->ret_x = interpreter->x;
